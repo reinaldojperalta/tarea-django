@@ -18,6 +18,11 @@ CSRF_TRUSTED_ORIGINS = os.getenv(
     'CSRF_TRUSTED_ORIGINS', 'http://localhost:5173,http://127.0.0.1:5173'
 ).split(',')
 
+# El panel React (vite, puerto 5173) consume la API desde otro origen.
+CORS_ALLOWED_ORIGINS = os.getenv(
+    'CORS_ALLOWED_ORIGINS', 'http://localhost:5173,http://127.0.0.1:5173'
+).split(',')
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',

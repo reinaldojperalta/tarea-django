@@ -1,0 +1,280 @@
+:root {
+  color-scheme: dark;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #0d1220;
+  color: #e8ecf4;
+}
+
+.panel {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 16px 60px;
+  display: grid;
+  gap: 16px;
+}
+
+.panel-encabezado h1 {
+  margin: 0;
+  font-size: 1.9rem;
+}
+
+.panel-encabezado a {
+  color: #7fb4ff;
+}
+
+.panel-encabezado p {
+  color: #9aa7bd;
+  margin: 6px 0 0;
+}
+
+.tarjeta {
+  background: #151c2e;
+  border: 1px solid #263252;
+  border-radius: 14px;
+  padding: 16px 18px;
+}
+
+.tarjeta h2 {
+  margin: 0 0 12px;
+  font-size: 1.15rem;
+}
+
+.tarjeta h3 {
+  margin: 4px 0 8px;
+  font-size: 0.95rem;
+  color: #9aa7bd;
+}
+
+.vivo {
+  color: #3fd08a;
+  font-size: 0.75rem;
+}
+
+.nota {
+  color: #9aa7bd;
+  font-size: 0.85rem;
+}
+
+code {
+  background: #0d1220;
+  padding: 1px 6px;
+  border-radius: 6px;
+}
+
+.panel-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: end;
+  background: #151c2e;
+  border: 1px solid #263252;
+  border-radius: 14px;
+  padding: 14px 18px;
+}
+
+.panel-filtros h2 {
+  width: 100%;
+  margin: 0;
+  font-size: 0.9rem;
+  color: #9aa7bd;
+}
+
+.panel-filtros label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: #9aa7bd;
+}
+
+input,
+select {
+  background: #0d1220;
+  border: 1px solid #263252;
+  color: #e8ecf4;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 0.9rem;
+}
+
+button {
+  background: #2f66d0;
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  padding: 9px 14px;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: #3d78e6;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.metricas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.metrica {
+  background: #0d1220;
+  border: 1px solid #263252;
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.metrica strong {
+  font-size: 1.35rem;
+}
+
+.metrica span {
+  color: #9aa7bd;
+  font-size: 0.78rem;
+}
+
+.columnas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+@media (max-width: 800px) {
+  .columnas {
+    grid-template-columns: 1fr;
+  }
+}
+
+.barras {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 5px;
+}
+
+.barras li {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 8px;
+  align-items: center;
+  font-size: 0.78rem;
+}
+
+.barra-etiqueta {
+  color: #9aa7bd;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.barra {
+  background: linear-gradient(90deg, #2f66d0, #6ea8ff);
+  border-radius: 5px;
+  padding: 3px 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.barra.otra {
+  background: linear-gradient(90deg, #8a4fd0, #c78aff);
+}
+
+.controles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 6px 8px;
+  border-bottom: 1px solid #263252;
+}
+
+th {
+  color: #9aa7bd;
+  font-weight: 600;
+}
+
+td.lugar {
+  color: #9aa7bd;
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+td.codigo {
+  font-family: ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: #6ea8ff;
+}
+
+.chip {
+  background: #0d1220;
+  border: 1px solid #263252;
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-weight: 700;
+}
+
+.chip.mag5 {
+  background: #64240f;
+  border-color: #d05a2f;
+  color: #ffb48a;
+}
+
+.paginado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  font-size: 0.85rem;
+  color: #9aa7bd;
+}
+
+.error {
+  color: #ff8a8a;
+}
+
+.aviso {
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.85rem;
+}
+
+.aviso.ok {
+  background: #10331f;
+  color: #7ee6a8;
+}
+
+.aviso.error {
+  background: #3a1414;
+  color: #ff9a9a;
+}

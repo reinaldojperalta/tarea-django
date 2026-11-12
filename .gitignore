@@ -10,6 +10,7 @@ __pycache__/
 Frontend/node_modules/
 
 # Build del frontend para producción
+Frontend/dist/
 Backend/staticfiles/
 
 # Editor / sistema
