@@ -1,0 +1,17 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Secretos locales
+.env
+
+# Entornos de frontend
+Frontend/node_modules/
+
+# Build del frontend para producción
+Backend/staticfiles/
+
+# Editor / sistema
+.vscode/
+*.log
