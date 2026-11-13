@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Estadisticas from '../features/estadisticas/Estadisticas'
 import Listado from '../features/sismos/Listado'
+import MapaMundial from '../features/mapa/MapaMundial'
 import PanelLlave from '../features/auth/PanelLlave'
 
 export default function App() {
@@ -46,8 +47,21 @@ export default function App() {
       </section>
 
       <Estadisticas filtros={filtros} />
+      <MapaMundial filtros={filtros} />
       <Listado filtros={filtros} />
       <PanelLlave />
+
+      <footer className="panel-pie">
+        <p>
+          <strong>Autoría:</strong> Reinaldo Peralta · Proyecto final del taller
+          Django + React · Dominio: sismología (datos públicos de USGS).
+        </p>
+        <p className="nota">
+          Funcionalidad propia: mapa mundial interactivo con react-leaflet —
+          los sismos se dibujan según latitud/longitud y la burbuja crece y
+          cambia de color según la magnitud.
+        </p>
+      </footer>
     </main>
   )
 }

@@ -1,5 +1,9 @@
 # Proyecto final — Sismos mundiales (USGS)
 
+> **Autoría:** Reinaldo Peralta · Proyecto final del taller Django + React
+> · Dominio escogido: sismología (datos públicos del Servicio Geológico de
+> EE. UU., sin API key).
+
 Aplicación web full-stack para el cierre del taller Django + React: ingiere
 decenas de miles de sismos **reales** de la API pública del Servicio Geológico
 de EE. UU., los almacena en PostgreSQL y los expone con una API REST completa
@@ -60,6 +64,24 @@ npm run dev    # http://localhost:5173
   filtros del listado.
 - **Seguridad**: token del taller (RETO 16 "La Llave") — login que entrega la
   llave y operación protegida (ingesta) que la exige.
+
+## Funcionalidad propia: mapa mundial interactivo 🌍
+
+Además de todo lo pedido en el enunciado, el proyecto integra **un mapa
+mundial interactivo** (panel `Frontend/src/features/mapa/MapaMundial.jsx`,
+hecho con `react-leaflet` + tiles de OpenStreetMap):
+
+- Cada sismo se dibuja en el mapa según sus campos `latitud` y `longitud`
+  (dos columnas del modelo que el resto del panel no explotaba).
+- El **color y el tamaño de la burbuja** codifican la magnitud:
+  verde < 3, amarillo ≥ 3, naranja ≥ 5, rojo ≥ 6.
+- **Popup** al hacer clic con magnitud, profundidad, lugar, fecha e
+  `id_evento` del evento.
+- Respeta los **filtros compartidos** (zona y magnitud mínima): al filtrar,
+  el mapa trae los últimos 500 sismos del conjunto filtrado a
+  `/api/sismos/?page_size=500&...` y se redibuja.
+- Zoom y desplazamiento libres; el mapa repite el mundo al arrastrarlo
+  (`worldCopyJump`) para seguir eventos cerca del antimeridiano.
 
 ## Despliegue
 

@@ -278,3 +278,27 @@ td.codigo {
   background: #3a1414;
   color: #ff9a9a;
 }
+
+.mapa {
+  height: 430px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #263252;
+  position: relative;
+  z-index: 0;
+}
+
+.leaflet-container {
+  background: #0d1220;
+}
+
+.panel-pie {
+  border-top: 1px solid #263252;
+  padding-top: 14px;
+  font-size: 0.85rem;
+  color: #9aa7bd;
+}
+
+.panel-pie p {
+  margin: 0 0 6px;
+}
