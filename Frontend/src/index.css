@@ -288,6 +288,13 @@ td.codigo {
   z-index: 0;
 }
 
+/* Leaflet no trae altura por defecto en .leaflet-container:
+   sin esto el mapa mide 0 px y solo se ve la caja vacia. */
+.mapa .leaflet-container {
+  height: 100%;
+  width: 100%;
+}
+
 .leaflet-container {
   background: #0d1220;
 }
