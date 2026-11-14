@@ -83,7 +83,27 @@ hecho con `react-leaflet` + tiles de OpenStreetMap):
 - Zoom y desplazamiento libres; el mapa repite el mundo al arrastrarlo
   (`worldCopyJump`) para seguir eventos cerca del antimeridiano.
 
-## Despliegue
+## Despliegue (Render)
 
-Pendiente: Render (gunicorn + whitenoise, `DATABASE_URL`/`SECRET_KEY` como
-variables de entorno, `DEBUG=False`).
+El proyecto está listo para Render como **un solo servicio web** (Django sirve
+la API y el panel compilado con whitenoise):
+
+1. **Base de datos**: crear un PostgreSQL en Render y copiar su *Internal
+   Database URL*.
+2. **Web Service**: conectar el repo `reinaldojperalta/tarea-django`
+   (rama `main`).
+   - **Runtime**: Python 3 (`PYTHON_VERSION=3.14.0` como variable)
+   - **Build command**:
+     ```
+     pip install -r Backend/requirements.txt && python Backend/manage.py migrate && python Backend/manage.py ingestar_sismos 180 && python Backend/manage.py collectstatic --noinput && (python Backend/manage.py createsuperuser --noinput || true)
+     ```
+     (migra, ingiere los ~48.000 sismos reales, recolecta estáticos y crea
+     el superusuario con las variables `DJANGO_SUPERUSER_*`)
+   - **Start command**: `gunicorn config.wsgi --chdir Backend --bind 0.0.0.0:$PORT`
+   - **Variables de entorno**: `DATABASE_URL` (la del paso 1), `SECRET_KEY`,
+     `DEBUG=False`, `PYTHON_VERSION=3.14.0`, `DJANGO_SUPERUSER_USERNAME=admin`,
+     `DJANGO_SUPERUSER_EMAIL=…`, `DJANGO_SUPERUSER_PASSWORD=…`.
+3. El build de producción del panel ya viene committeado en
+   `Backend/static_frontend/` (whitenoise lo sirve), así que Render no
+   necesita npm: `npm run build` (desde `Frontend/`) lo regenera cuando
+   cambie el código React, y se vuelve a subir a GitHub.

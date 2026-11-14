@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # sirve el panel compilado en produccion
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -53,7 +54,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'static_frontend'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,24 +69,25 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT = (
-    os.environ['DB_NAME'],
-    os.environ['DB_USER'],
-    os.environ['DB_PASSWORD'],
-    os.environ['DB_HOST'],
-    os.environ['DB_PORT'],
-)
+# En produccion (Render) la base llega como DATABASE_URL; en local se usan
+# las variables DB_* del .env.
+URL_BASE_DATOS = os.getenv('DATABASE_URL')
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': DB_NAME,
-        'USER': DB_USER,
-        'PASSWORD': DB_PASSWORD,
-        'HOST': DB_HOST,
-        'PORT': DB_PORT,
+if URL_BASE_DATOS:
+    import dj_database_url
+
+    DATABASES = {'default': dj_database_url.parse(URL_BASE_DATOS, conn_max_age=600)}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ['DB_NAME'],
+            'USER': os.environ['DB_USER'],
+            'PASSWORD': os.environ['DB_PASSWORD'],
+            'HOST': os.environ['DB_HOST'],
+            'PORT': os.environ['DB_PORT'],
+        }
     }
-}
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -111,6 +113,9 @@ USE_TZ = True
 
 
 STATIC_URL = 'static/'
+# El build del panel React (vite) sale aqui y whitenoise lo sirve junto a la API.
+STATICFILES_DIRS = [BASE_DIR / 'static_frontend']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # RETO 16 del taller aplicado: la llave (token) viaja en Authorization.
 REST_FRAMEWORK = {

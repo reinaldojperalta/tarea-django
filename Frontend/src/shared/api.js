@@ -2,7 +2,7 @@
 // Sin llave (GET publicos) y con llave (Authorization: Token ...), como el RETO 16.
 
 export const API_URL =
-  import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api'
+  import.meta.env.VITE_API_URL || '/api'
 
 // GET sencillo que devuelve el JSON o lanza un error legible.
 export async function peticion(ruta) {
