@@ -73,9 +73,9 @@ export default function MapaMundial({ filtros }) {
           worldCopyJump={true}
         >
           <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · &copy; <a href="https://carto.com/attributions">CARTO</a>'
-            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-            subdomains={['a', 'b', 'c', 'd']}
+            attribution='Tiles &copy; Esri — Esri, HERE, Garmin, FAO, USGS, NGA'
+            url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+            maxZoom={16}
           />
           {sismos.map((sismo) => (
             <CircleMarker
